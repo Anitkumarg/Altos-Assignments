@@ -1,0 +1,51 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Sr.No</th>
+      <th scope="col">Grade</th>
+      <th scope="col">Kra</th>
+      <th scope="col">Status</th>
+      <th scope="col">Created On</th>
+      <th scope="col">Updated On</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="shadow" *ngFor="let row of tableData; let rowIndex = index">
+      <th>{{ rowIndex + 1 }}</th>
+      <td>{{ row.grade }}</td>
+      <td>
+        <a href="#" (click)="showKraModal(kraModal)">{{ row.kra | limittext: 20 }}</a>
+        <!-- Bootstrap pop-up code -->
+        <ng-template #kraModal let-modal>
+          <div class="modal-header">
+            <h4 class="modal-title text-center">Grade Details</h4>
+            <button type="button" class="close cross-button" aria-label="Close" (click)="modal.dismiss()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><span class="text-color">Grade: </span> <span class="grade-text">{{ row?.grade }}</span></p>
+            <p><span class="text-color">Status: </span>{{row?.status}}</p>
+            <div class="text-color">KRA</div>
+            <P>{{row?.kra}}</P>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary rounded-0 px-4" (click)="modal.dismiss()">Ok</button>
+          </div>
+        </ng-template>
+      </td>
+      <td><div class="status-style" [ngStyle]="{
+        'background-color': row.status === 'Active' ? '#CAFBD4' : '#E4DEDE',
+        'color': row.status === 'Active' ? '#A5D791' : ''
+      }">{{ row.status }}</div></td>
+      <td>{{ row.createdOn }}</td>
+      <td>{{ row.updatedOn }}</td>
+      <td>
+        <span class="me-2" (click)="updateItem(row)"><i class="fa-solid fa-pen edit-icon"></i></span>
+        <span (click)="deleteItem(rowIndex)"><i class="fa-sharp fa-solid fa-trash delete-icon"></i></span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

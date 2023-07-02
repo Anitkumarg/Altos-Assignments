@@ -1,0 +1,32 @@
+.main-container {
+  background-color: #f4f8fc;
+  height: 100vh;
+}
+
+.header {
+  display: flex;
+  background-color: white;
+}
+
+.custom-width {
+  width: 350px;
+}
+
+.custom-textarea-width {
+  width: 250px;
+}
+
+.form-check-input:checked {
+  background-color: #FFC107;
+  border-color: #FFC107;
+}
+
+.button-container {
+  position: absolute;
+  top: 50px;
+  right: 120px;
+}
+
+.save-button {
+  background-color: #0793cc;
+}
